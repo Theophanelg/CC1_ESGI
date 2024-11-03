@@ -1,0 +1,1 @@
+// This module manages a binary tree data structure used to store table rows, providing efficient operations for searching, inserting, deleting, and balancing data.
