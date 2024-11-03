@@ -13,3 +13,17 @@ Table* create_table(){
     }
     return table;
 }
+
+// Function to insert a new row into the table
+void insert_row(Table* table, Row* row) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = row;
+    newNode->left = NULL;
+    newNode->right = NULL;
+
+    if (table->root == NULL) {
+        table->root = newNode;
+    } else {
+        insert_into_binary_tree(table->root, newNode);
+    }
+}
