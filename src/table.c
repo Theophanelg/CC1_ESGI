@@ -20,6 +20,20 @@ Table* create_table(){
     return table;
 }
 
+// Function to create a new row with specified attributes and return a pointer to it
+Row* create_row(int id, const char* name, int age, const char* school) {
+    Row* row = (Row*)malloc(sizeof(Row));
+    if (!row) {
+        fprintf(stderr, "Memory allocation failed for new row\n");
+        return NULL;
+    }
+    row->id = id;
+    snprintf(row->name, sizeof(row->name), "%s", name);
+    row->age = age;
+    snprintf(row->school, sizeof(row->school), "%s", school);
+    return row;
+}
+
 // Function to insert a new row into the table
 void insert_row(Table* table, Row* row) {
     Node* newNode = (Node*)malloc(sizeof(Node));
