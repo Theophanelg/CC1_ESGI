@@ -27,3 +27,11 @@ void insert_row(Table* table, Row* row) {
         insert_into_binary_tree(table->root, newNode);
     }
 }
+
+// Function to free the allocated memory for the table
+void free_table(Table* table) {
+    if (table) {
+        free_binary_tree(table->root);
+        free(table);
+    }
+}
