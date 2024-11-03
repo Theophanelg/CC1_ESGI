@@ -54,6 +54,27 @@ void insert_row(Table* table, Row* row) {
     }
 }
 
+// Function to find a row by ID
+Row* select_row(Table* table, int id) {
+    return find_row_in_tree(table->root, id);
+}
+
+// Helper function to search for a row by ID in the binary tree
+Row* find_row_in_tree(Node* root, int id) {
+    if (root == NULL) {
+        return NULL; 
+    }
+    if (id == root->data->id) {
+        return root->data;
+    } else if (id < root->data->id) {
+        return find_row_in_tree(root->left, id);
+    } else {
+        return find_row_in_tree(root->right, id);
+    }
+}
+
+
+
 // Function to free the allocated memory for the table
 void free_table(Table* table) {
     if (table) {
