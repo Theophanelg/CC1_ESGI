@@ -1,9 +1,6 @@
 #ifndef TABLE_H
 #define TABLE_H
 
-#include <stdlib.h>
-#include "btree.h"
-
 // Structure to represent a row in table
 typedef struct {
     int id;
@@ -12,9 +9,16 @@ typedef struct {
     char school[50];
 } Row; 
 
+// Node structure representing each element in the binary tree
+typedef struct Node {
+    void* data;     
+    struct Node* left;     
+    struct Node* right;
+} Node;
+
 typedef struct {
     Node* root;
-    size_t row_count;
+    int row_count;
 } Table;
 
 // Call methodes
