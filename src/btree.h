@@ -1,6 +1,6 @@
 #ifndef BINARY_TREE_H
 #define BINARY_TREE_H
-#include "table"
+#include "table.h"
 
 // Node structure representing each element in the binary tree
 typedef struct Node {
