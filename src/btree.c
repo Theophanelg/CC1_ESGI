@@ -39,4 +39,13 @@ Row* find_row_in_tree(Node* root, int id) {
     }
 }
 
-
+// Function to free all nodes in the binary tree
+void free_binary_tree(Node* root) {
+    if (root == NULL) {
+        return;
+    }
+    free_binary_tree(root->left);
+    free_binary_tree(root->right);
+    free(root->data);
+    free(root);
+}
