@@ -1,5 +1,6 @@
 #ifndef BINARY_TREE_H
 #define BINARY_TREE_H
+#include "table"
 
 // Node structure representing each element in the binary tree
 typedef struct Node {
@@ -10,8 +11,9 @@ typedef struct Node {
 
 //call methodes
 void insert_into_binary_tree(Node* root, Node* newNode);
-void free_binary_tree(Node* root);
-Node* delete_node(Node* root, int id);
 Row* find_row_in_tree(Node* root, int id);
+Node* delete_node(Node* root, int id);
+void free_binary_tree(Node* root);
+
 
 #endif
