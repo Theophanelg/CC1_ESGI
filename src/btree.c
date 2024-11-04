@@ -20,7 +20,7 @@
  */ 
 #include <stdio.h>
 #include <stdlib.h>
-#include "binary_tree.h"
+#include "btree.h"
 #include "table.h"
 
 // Function to insert a new node into the binary tree
@@ -64,24 +64,20 @@ Node* delete_node(Node* root, int id) {
         return NULL;
     }
 
-    if (id < root->data->id) {
+    Row* rowData = (Row*)root->data;
+    if (id < rowData->id) {
         root->left = delete_node(root->left, id);
-    } else if (id > root->data->id) {
+    } else if (id > rowData->id) {
         root->right = delete_node(root->right, id);
     } else {
-        if (root->left == NULL && root->right == NULL) {
-            free(root->data);
-            free(root);
-            return NULL;
-        }
-        else if (root->left == NULL) {
+        if (root->left == NULL) {
             Node* temp = root->right;
-            free(root->data);
+            free(rowData);
             free(root);
             return temp;
         } else if (root->right == NULL) {
             Node* temp = root->left;
-            free(root->data);
+            free(rowData);
             free(root);
             return temp;
         }
