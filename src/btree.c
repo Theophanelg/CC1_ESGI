@@ -1,4 +1,23 @@
-//
+/*
+ * binary_tree.c
+ * 
+ * This module provides functions to manage a binary tree data structure 
+ * specifically for storing and organizing rows based on unique IDs. The 
+ * functions included allow for insertion, search, deletion, and memory 
+ * deallocation of tree nodes, each containing a row of data.
+ * 
+ * Functions:
+ * - insert_into_binary_tree: Inserts a node into the binary tree.
+ * - find_row_in_tree: Searches for a row by ID within the tree, returning a pointer to the row if found.
+ * - delete_node: Removes a node by ID from the tree, adjusting connections to maintain tree structure.
+ * - free_binary_tree: Recursively frees memory for all nodes in the tree.
+ * 
+ * Dependencies:
+ * - table.h: Defines the Row structure used as the data payload in each node.
+ * - binary_tree.h: Contains the structure definitions and prototypes for this module.
+ * 
+ * Author: [LEGRAND Théophane]
+ */ 
 #include <stdio.h>
 #include <stdlib.h>
 #include "binary_tree.h"
