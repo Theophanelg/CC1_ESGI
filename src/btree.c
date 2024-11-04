@@ -58,6 +58,37 @@ Row* find_row_in_tree(Node* root, int id) {
     }
 }
 
+// Helper function to delete a node from the binary tree
+Node* delete_node(Node* root, int id) {
+    if (root == NULL) {
+        return NULL;
+    }
+
+    if (id < root->data->id) {
+        root->left = delete_node(root->left, id);
+    } else if (id > root->data->id) {
+        root->right = delete_node(root->right, id);
+    } else {
+        if (root->left == NULL && root->right == NULL) {
+            free(root->data);
+            free(root);
+            return NULL;
+        }
+        else if (root->left == NULL) {
+            Node* temp = root->right;
+            free(root->data);
+            free(root);
+            return temp;
+        } else if (root->right == NULL) {
+            Node* temp = root->left;
+            free(root->data);
+            free(root);
+            return temp;
+        }
+    }
+    return root;
+}
+
 // Function to free all nodes in the binary tree
 void free_binary_tree(Node* root) {
     if (root == NULL) {
