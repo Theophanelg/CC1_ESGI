@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include "table.h"
 
-//Function to create a new table and initialize its parameters
+// Function to create a new table and initialize its parameters
 Table* create_table(){
     Table* table = (Table*)malloc(sizeof(Table));
     
@@ -107,6 +107,17 @@ Node* delete_node(Node* root, int id) {
         }
     }
     return root;
+}
+
+// Recursive function to free the memory allocated for all nodes in the binary tree
+void free_binary_tree(Node* root) {
+    if (root == NULL) {
+        return;
+    }
+    free_binary_tree(root->left);
+    free_binary_tree(root->right);
+    free(root->data);
+    free(root);
 }
 
 // Function to free the allocated memory for the table
