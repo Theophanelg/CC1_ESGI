@@ -1,8 +1,30 @@
-// This module is responsible for managing database tables, defining the necessary data structures and functions to manipulate tables effectively. 
-
+/*
+ * table.c
+ * 
+ * This module provides functionality for managing tables containing rows 
+ * of data, each stored as a node within a binary tree. It includes functions 
+ * to create, insert, retrieve, delete, and free rows within a table structure, 
+ * with each row uniquely identified by an ID.
+ * 
+ * Functions:
+ * - create_table: Function to create a new table and initialize its parameters
+ * - create_row: Function to create a new row with specified attributes and return a pointer to it
+ * - insert_row: Function to insert a new row into the table
+ * - select_row: Function to find a row by ID
+ * - delete_row: Function to delete a row from the table by ID
+ * - free_table: Frees all allocated memory associated with the table and its nodes.
+ * 
+ * Dependencies:
+ * - stdio.h and stdlib.h: Required for input/output operations and dynamic memory allocation.
+ * - table.h: Defines the structure and prototypes necessary for table and row management.
+ * - binary_tree.h: Defines binary tree-related functions used for node insertion, deletion, and searching.
+ * 
+ * Author: [LEGRAND Théophane]
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include "table.h"
+#include "btree.h"
 
 // Function to create a new table and initialize its parameters
 Table* create_table(){
@@ -37,12 +59,10 @@ Row* create_row(int id, const char* name, int age, const char* school) {
 // Function to insert a new row into the table
 void insert_row(Table* table, Row* row) {
     Node* newNode = (Node*)malloc(sizeof(Node));
-
     if (!newNode) {
         fprintf(stderr, "Memory allocation failed for new node\n");
-        return NULL;
+        return;
     }
-
     newNode->data = row;
     newNode->left = NULL;
     newNode->right = NULL;
@@ -52,6 +72,7 @@ void insert_row(Table* table, Row* row) {
     } else {
         insert_into_binary_tree(table->root, newNode);
     }
+    table->row_count++;
 }
 
 // Function to find a row by ID
@@ -59,65 +80,9 @@ Row* select_row(Table* table, int id) {
     return find_row_in_tree(table->root, id);
 }
 
-// Helper function to search for a row by ID in the binary tree
-Row* find_row_in_tree(Node* root, int id) {
-    if (root == NULL) {
-        return NULL; 
-    }
-    if (id == root->data->id) {
-        return root->data;
-    } else if (id < root->data->id) {
-        return find_row_in_tree(root->left, id);
-    } else {
-        return find_row_in_tree(root->right, id);
-    }
-}
-
 // Function to delete a row from the table by ID
 void delete_row(Table* table, int id) {
     table->root = delete_node(table->root, id);
-}
-
-// Helper function to delete a node from the binary tree
-Node* delete_node(Node* root, int id) {
-    if (root == NULL) {
-        return NULL;
-    }
-
-    if (id < root->data->id) {
-        root->left = delete_node(root->left, id);
-    } else if (id > root->data->id) {
-        root->right = delete_node(root->right, id);
-    } else {
-        if (root->left == NULL && root->right == NULL) {
-            free(root->data);
-            free(root);
-            return NULL;
-        }
-        else if (root->left == NULL) {
-            Node* temp = root->right;
-            free(root->data);
-            free(root);
-            return temp;
-        } else if (root->right == NULL) {
-            Node* temp = root->left;
-            free(root->data);
-            free(root);
-            return temp;
-        }
-    }
-    return root;
-}
-
-// Recursive function to free the memory allocated for all nodes in the binary tree
-void free_binary_tree(Node* root) {
-    if (root == NULL) {
-        return;
-    }
-    free_binary_tree(root->left);
-    free_binary_tree(root->right);
-    free(root->data);
-    free(root);
 }
 
 // Function to free the allocated memory for the table
