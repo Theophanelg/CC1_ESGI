@@ -10,7 +10,7 @@ Table* create_table(){
     
     if (!table) {
         fprintf(stderr, "Memory allocation failed for new node\n");
-        return;
+        return NULL;
     }
     
     if (table) {
@@ -40,7 +40,7 @@ void insert_row(Table* table, Row* row) {
 
     if (!newNode) {
         fprintf(stderr, "Memory allocation failed for new node\n");
-        return;
+        return NULL;
     }
 
     newNode->data = row;
