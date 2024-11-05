@@ -17,7 +17,7 @@
  * Dependencies:
  * - stdio.h and stdlib.h: Required for input/output operations and dynamic memory allocation.
  * - table.h: Defines the structure and prototypes necessary for table and row management.
- * - binary_tree.h: Defines binary tree-related functions used for node insertion, deletion, and searching.
+ * - btree.h: Defines binary tree-related functions used for node insertion, deletion, and searching.
  * 
  * Author: [LEGRAND Théophane]
  */
