@@ -32,8 +32,30 @@ void test_create_row() {
     printf("test_create_row is passed\n");
 }
 
+// Test for insert row
+void test_insert_row(){
+    Table* table = create_table();
+    assert(table != NULL);
+
+    Row* row = create_row(1,"Théophane",21,"ESGI");
+    assert(row != NULL);
+    
+    insert_row(table, row);
+
+    assert(table->root != NULL);
+    assert(table->row_count == 1);
+    assert(((Row*)table->root->data)->id == row->id);
+    assert(strcmp(((Row*)table->root->data)->name, row->name) == 0);
+    assert(((Row*)table->root->data)->age == row->age);
+    assert(strcmp(((Row*)table->root->data)->school, row->school) == 0);
+
+    free_table(table);
+    printf("test_insert_row is passed\n");
+}
+
 int main() {
     test_create_table();
     test_create_row();
+    test_insert_row();
     return 0;
 }
