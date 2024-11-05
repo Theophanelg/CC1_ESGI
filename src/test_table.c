@@ -75,6 +75,7 @@ void test_select_row(){
     printf("test_select_row is passed\n");
 }
 
+//Test for delete row
 void test_delete_row(){
     Table* table = create_table();
     assert(table !=NULL);
@@ -97,11 +98,31 @@ void test_delete_row(){
     printf("test_delete_row is passed\n");
 }
 
+
+//Test for free table
+void test_free_table() {
+    Table* table = create_table();
+    assert(table != NULL);
+
+    Row* row1 = create_row(1, "Théophane", 21, "ESGI");
+    Row* row2 = create_row(2, "Théophane Numéro 2", 22, "Toujours l'ESGI");
+    Row* row3 = create_row(3, "Théophane numéro 3", 23, "Toujours et encore l'ESGI");
+
+    insert_row(table, row1);
+    insert_row(table, row2);
+    insert_row(table, row3);
+
+    free_table(table);
+
+    printf("test_free_table is passed\n");
+}
+
 int main() {
     test_create_table();
     test_create_row();
     test_insert_row();
     test_select_row();
     test_delete_row();
+    test_free_table();
     return 0;
 }
