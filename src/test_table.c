@@ -53,9 +53,32 @@ void test_insert_row(){
     printf("test_insert_row is passed\n");
 }
 
+//Test for select row
+void test_select_row(){
+    Table* table = create_table();
+    assert(table != NULL);
+
+    Row* row1 = create_row(1, "Théophane", 21, "ESGI");
+    Row* row2 = create_row(2, "Théophane Numéro 2", 22, "Toujours l'ESGI");
+    Row* row3 = create_row(3, "Théophane numéro 3", 23, "Toujours et encore l'ESGI");
+
+    insert_row(table, row1);
+    insert_row(table, row2);
+    insert_row(table, row3);
+
+    assert(select_row(table, 1) == row1);
+    assert(select_row(table, 2) == row2);
+    assert(select_row(table, 3) == row3);
+    assert(select_row(table, 4) == NULL);
+
+    free_table(table);
+    printf("test_select_row is passed\n");
+}
+
 int main() {
     test_create_table();
     test_create_row();
     test_insert_row();
+    test_select_row();
     return 0;
 }
