@@ -14,7 +14,7 @@
  * 
  * Dependencies:
  * - table.h: Defines the Row structure used as the data payload in each node.
- * - binary_tree.h: Contains the structure definitions and prototypes for this module.
+ * - btree.h: Contains the structure definitions and prototypes for this module.
  * 
  * Author: [LEGRAND Théophane]
  */ 
