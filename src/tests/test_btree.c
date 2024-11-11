@@ -36,7 +36,40 @@ void test_insert_into_binary_tree() {
     free_binary_tree(root);
 }
 
+// Test for finding a row by ID
+void test_find_row_in_tree() {
+    Node* root = (Node*)malloc(sizeof(Node));
+    Row* rootRow = create_row(2, "Root", 20, "Root");
+    root->data = rootRow;
+    root->left = NULL;
+    root->right = NULL;
+
+    Row* leftRow = create_row(1, "LeftChild", 18, "Left");
+    Node* leftNode = (Node*)malloc(sizeof(Node));
+    leftNode->data = leftRow;
+    leftNode->left = NULL;
+    leftNode->right = NULL;
+
+    insert_into_binary_tree(root, leftNode);
+
+    Row* foundRow = find_row_in_tree(root, 1);
+    assert(foundRow != NULL && foundRow->id == 1);
+    assert(strcmp(foundRow->name, "LeftChild") == 0);
+
+    foundRow = find_row_in_tree(root, 99);
+    assert(foundRow == NULL);
+
+    printf("test_find_row_in_tree is passed\n");
+
+    free_binary_tree(root);
+}
+
+
+
+
+
 int main() {
     test_insert_into_binary_tree();
+    test_find_row_in_tree();
     return 0;
 }
