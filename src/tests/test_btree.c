@@ -100,11 +100,31 @@ void test_delete_node() {
     free_binary_tree(root);
 }
 
+// Test for freeing the binary tree
+void test_free_binary_tree() {
+    Node* root = (Node*)malloc(sizeof(Node));
+    Row* rootRow = create_row(2, "Root", 20, "Root");
+    root->data = rootRow;
+    root->left = NULL;
+    root->right = NULL;
 
+    Row* leftRow = create_row(1, "LeftChild", 18, "Left");
+    Node* leftNode = (Node*)malloc(sizeof(Node));
+    leftNode->data = leftRow;
+    leftNode->left = NULL;
+    leftNode->right = NULL;
+
+    insert_into_binary_tree(root, leftNode);
+
+    free_binary_tree(root);
+
+    printf("test_free_binary_tree is passed\n");
+}
 
 int main() {
     test_insert_into_binary_tree();
     test_find_row_in_tree();
     test_delete_node();
+    test_free_binary_tree();
     return 0;
 }
