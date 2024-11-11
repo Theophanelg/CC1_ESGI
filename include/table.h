@@ -16,6 +16,7 @@ typedef struct Node {
     struct Node* right;
 } Node;
 
+// structure to represent a Table
 typedef struct {
     Node* root;
     int row_count;
