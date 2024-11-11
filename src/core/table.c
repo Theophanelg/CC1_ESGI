@@ -27,10 +27,13 @@
 #include "../include/btree.h"
 #include "../include/disk_persistence.h"
 
+
+// Function to save the table
 void save_table(Table* table) {
     save_table_to_file(table, "table_data.dat");
 }
 
+// Function to load the table
 Table* load_table() {
     return load_table_from_file("table_data.dat");
 }
