@@ -1,6 +1,6 @@
 #ifndef BINARY_TREE_H
 #define BINARY_TREE_H
-#include "../include/btree.h"
+#include "../include/table.h"
 
 //call methodes
 void insert_into_binary_tree(Node* root, Node* newNode);
