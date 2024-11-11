@@ -1,3 +1,25 @@
+/*
+ * disk_persistence.c
+ *
+ * This module handles saving data to and loading data from disk, providing persistence
+ * for the database across sessions. It includes functions for writing and reading rows,
+ * as well as saving and loading entire tables to and from disk.
+ *
+ * Functions:
+ * - write_row_to_file: Function to write a row to a file in binary format.
+ * - read_row_from_file: Function to read a row from a file in binary format.
+ * - save_table_to_file: Function to save the entire table to a file, including all rows.
+ * - load_table_from_file: Function to load a table from a file, reconstructing the table and its rows.
+ *
+ * Dependencies:
+ * - stdio.h: Provides functions for file handling (e.g., fopen, fread, fwrite).
+ * - stdlib.h: Required for dynamic memory allocation (e.g., malloc).
+ * - disk_persistence.h: Defines the prototypes for the disk persistence functions, 
+ *   as well as the structures used for row and table management.
+ * - table.h: Defines the structure for the table, which is used to manage rows.
+ * 
+ * Author: [LEGRAND Théophane]
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include "disk_persistence.h"
