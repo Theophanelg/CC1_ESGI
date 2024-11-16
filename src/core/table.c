@@ -82,7 +82,7 @@ void insert_row(Table* table, Row* row) {
     if (table->root == NULL) {
         table->root = newNode;
     } else {
-        insert_into_binary_tree(table->root, newNode);
+        insert_into_binary_tree(&(table->root), newNode);
     }
     table->row_count++;
 }
@@ -95,6 +95,10 @@ Row* select_row(Table* table, int id) {
 // Function to delete a row from the table by ID
 void delete_row(Table* table, int id) {
     table->root = delete_node(table->root, id);
+}
+// Function to print the entire table by calling print_node on the root node
+void print_table(Table* table) {
+    print_node(table->root);
 }
 
 // Function to free the allocated memory for the table
