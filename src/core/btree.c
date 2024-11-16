@@ -21,27 +21,40 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../include/btree.h"
-#include "../include/btree.h"
 
-// Function to insert a new node into the binary tree
-void insert_into_binary_tree(Node* root, Node* newNode) {
-    Row* rootData = (Row*)root->data;
+// Function to insert in new node in binary tree
+void insert_into_binary_tree(Node** root, Node* newNode) {
+    if (!root || !newNode || !newNode->data) {
+        printf("Invalid input to insert_into_binary_tree\n");
+        return;
+    }
+
+    if (*root == NULL) {
+        *root = newNode;
+        printf("Inserted at root, Node ID: %d\n", ((Row*)newNode->data)->id);
+        return;
+    }
+
+    Row* rootData = (Row*)(*root)->data;
     Row* newNodeData = (Row*)newNode->data;
 
     if (newNodeData->id < rootData->id) {
-        if (root->left == NULL) {
-            root->left = newNode;
+        if ((*root)->left == NULL) {
+            (*root)->left = newNode;
+            printf("Inserted at left of Node ID: %d\n", rootData->id);
         } else {
-            insert_into_binary_tree(root->left, newNode);
+            insert_into_binary_tree(&(*root)->left, newNode);
         }
     } else {
-        if (root->right == NULL) {
-            root->right = newNode;
+        if ((*root)->right == NULL) {
+            (*root)->right = newNode;
+            printf("Inserted at right of Node ID: %d\n", rootData->id);
         } else {
-            insert_into_binary_tree(root->right, newNode);
+            insert_into_binary_tree(&(*root)->right, newNode);
         }
     }
 }
+
 
 // Function to find a node containing a Row with a specific ID in the tree
 Row* find_row_in_tree(Node* root, int id) {
@@ -58,10 +71,15 @@ Row* find_row_in_tree(Node* root, int id) {
     }
 }
 
-// Helper function to delete a node from the binary tree
+// Function for delete node in binary tree
 Node* delete_node(Node* root, int id) {
     if (root == NULL) {
         return NULL;
+    }
+
+    if (root->data == NULL) {
+        fprintf(stderr, "Error: root->data is NULL.\n");
+        return root;
     }
 
     Row* rowData = (Row*)root->data;
@@ -80,9 +98,37 @@ Node* delete_node(Node* root, int id) {
             free(rowData);
             free(root);
             return temp;
+        } else {
+            Node* successor = root->right;
+            while (successor->left != NULL) {
+                successor = successor->left;
+            }
+
+            Row* successorData = (Row*)successor->data;
+            rowData->id = successorData->id;
+            snprintf(rowData->name, sizeof(rowData->name), "%s", successorData->name);
+            rowData->age = successorData->age;
+            snprintf(rowData->school, sizeof(rowData->school), "%s", successorData->school);
+
+            root->right = delete_node(root->right, successorData->id);
         }
     }
     return root;
+}
+
+// Function to print the data stored in a node and its child nodes recursively
+void print_node(Node* node) {
+    if (node != NULL) {
+        Row* row = (Row*)node->data;
+        printf("Node ID : %d\n", row->id);
+        printf("Prénom : %s\n", row->name);
+        printf("Age : %d\n", row->age);
+        printf("Ecole : %s\n", row->school);
+        printf("-------------------------\n");
+
+        print_node(node->left);
+        print_node(node->right);
+    }
 }
 
 // Function to free all nodes in the binary tree
@@ -90,8 +136,12 @@ void free_binary_tree(Node* root) {
     if (root == NULL) {
         return;
     }
+
     free_binary_tree(root->left);
     free_binary_tree(root->right);
-    free(root->data);
+
+    if (root->data != NULL) {
+        free(root->data);
+    }
     free(root);
 }
