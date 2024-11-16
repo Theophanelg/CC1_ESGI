@@ -1,22 +1,27 @@
-#Compiler and flags 
-CC = gcc 
-FLAGS = -Wall -Werror -ansi -pedantic
+# Variables
+CC = gcc
+CFLAGS = -Wall -Werror -Iinclude
+OBJ_DIR = obj
+SRC_DIR = src/core
 
-#Target executable
-TARGET = main
+# List of object files
+OBJ_FILES = $(OBJ_DIR)/main.o $(OBJ_DIR)/table.o $(OBJ_DIR)/btree.o $(OBJ_DIR)/disk_persistence.o
 
-#Source and object files
-SRCS = main.c table.c btree.c sql_commands.c disk_persistence.c utils.c
-OBJS = $(SRCS:.c=.o)
+# Default target
+all: main
 
-# Link object files to create the final executable
-$(TARGET): $(OBJS)
-	$(CC) $(FLAGS) -o $(TARGET) $(OBJS)
+# Rule to create the main executable
+main: $(OBJ_FILES)
+	$(CC) $(CFLAGS) -o $@ $^
 
-# Compile each .c file into .o object files
-%.o: %.c
-	$(CC) $(FLAGS) -c $< -o $@
+# Compilation of source files
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+# Create obj folder if it doesn't exist
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
 # Clean up generated files
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -rf $(OBJ_DIR) main
