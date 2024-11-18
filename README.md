@@ -23,7 +23,7 @@ This project demonstrates key concepts in data structures, file I/O, and memory 
 
 ## Project Structure
 
-    project/
+    CC1_ESGI/
     ├── include/
     │   ├── btree.h             # Header for binary tree operations
     │   ├── disk_persistence.h  # Header for file persistence functions
@@ -34,8 +34,10 @@ This project demonstrates key concepts in data structures, file I/O, and memory 
     │   │   ├── disk_persistence.c # Implementation of file I/O functions
     │   │   ├── table.c         # Implementation of table and row-related functions
     │   │   └── main.c          # Main program
+    │   ├── tests/
+    │   │   ├── test_btree.c    # Test for binary tree functions
+    │   │   └── test_table.c    # Test for table and row functions
     ├── obj/                    # Compiled object files
-    ├── table.dat               # Output file for table persistence (generated during runtime)
     ├── Makefile                # Build automation script
     └── README.md               # Project documentation
 
