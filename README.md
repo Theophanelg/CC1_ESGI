@@ -67,22 +67,22 @@ The program will:
 
 Output example:
 
-Table contents:
-Node ID : 1
-Prénom : Théophane
-Age : 21
-Ecole : ESGI 1
--------------------------
-Node ID : 2
-Prénom : Encore Théophane
-Age : 22
-Ecole : ESGI 2
--------------------------
-Node ID : 3
-Prénom : Quelqu'un d'autre
-Age : 23
-Ecole : Paris School
--------------------------
+    Table contents:
+    Node ID : 1
+    Prénom : Théophane
+    Age : 21
+    Ecole : ESGI 1
+    -------------------------
+    Node ID : 2
+    Prénom : Encore Théophane
+    Age : 22
+    Ecole : ESGI 2
+    -------------------------
+    Node ID : 3
+    Prénom : Quelqu'un d'autre
+    Age : 23
+    Ecole : Paris School
+    -------------------------
 
 ## Requirements
 
