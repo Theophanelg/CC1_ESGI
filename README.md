@@ -37,6 +37,7 @@ This project demonstrates key concepts in data structures, file I/O, and memory 
     │   ├── tests/
     │   │   ├── test_btree.c    # Test for binary tree functions
     │   │   └── test_table.c    # Test for table and row functions
+    │   ├── repl.c
     ├── obj/                    # Compiled object files
     ├── Makefile                # Build automation script
     └── README.md               # Project documentation
