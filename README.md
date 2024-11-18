@@ -23,21 +23,21 @@ This project demonstrates key concepts in data structures, file I/O, and memory 
 
 ## Project Structure
 
-project/
-├── include/
-│   ├── btree.h             # Header for binary tree operations
-│   ├── disk_persistence.h  # Header for file persistence functions
-│   └── table.h             # Header for table and row operations
-├── src/
-│   ├── core/
-│   │   ├── btree.c         # Implementation of binary tree functions
-│   │   ├── disk_persistence.c # Implementation of file I/O functions
-│   │   ├── table.c         # Implementation of table and row-related functions
-│   │   └── main.c          # Main program
-├── obj/                    # Compiled object files
-├── table.dat               # Output file for table persistence (generated during runtime)
-├── Makefile                # Build automation script
-└── README.md               # Project documentation
+    project/
+    ├── include/
+    │   ├── btree.h             # Header for binary tree operations
+    │   ├── disk_persistence.h  # Header for file persistence functions
+    │   └── table.h             # Header for table and row operations
+    ├── src/
+    │   ├── core/
+    │   │   ├── btree.c         # Implementation of binary tree functions
+    │   │   ├── disk_persistence.c # Implementation of file I/O functions
+    │   │   ├── table.c         # Implementation of table and row-related functions
+    │   │   └── main.c          # Main program
+    ├── obj/                    # Compiled object files
+    ├── table.dat               # Output file for table persistence (generated during runtime)
+    ├── Makefile                # Build automation script
+    └── README.md               # Project documentation
 
 ## Installation
 
