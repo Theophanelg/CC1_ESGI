@@ -58,6 +58,7 @@ make
     Run the program:
 
 ./main
+gdb ./main
 
 The program will:
 
@@ -89,6 +90,7 @@ Output example:
     GCC Compiler
     Makefile support
     Linux or Windows environment with MinGW/Cygwin for Windows
+    GDB
 
 ## License
 
