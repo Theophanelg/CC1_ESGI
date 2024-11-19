@@ -58,6 +58,7 @@ make
     Run the program:
 
 ./main
+
 gdb ./main
 
 The program will:
