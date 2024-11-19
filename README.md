@@ -91,7 +91,7 @@ Output example:
     GCC Compiler
     Makefile support
     Linux or Windows environment with MinGW/Cygwin for Windows
-    GDB
+    GDB Debugger
 
 ## License
 
